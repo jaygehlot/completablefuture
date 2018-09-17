@@ -12,18 +12,20 @@ public class S02_Creating extends AbstractFuturesTest {
 	private static final Logger log = LoggerFactory.getLogger(S02_Creating.class);
 
 	/**
-	 * Already completed future
+	 * Already completed future.
+	 *
+	 * This CompletableFuture has a fixed value,
 	 */
 	@Test
 	public void completed() throws Exception {
 		final CompletableFuture<Integer> answer =
 				CompletableFuture.completedFuture(42);
 
-		final int fortyTwo = answer.get();  //does not block
+		final int fortyTwo = answer.get();  //does not block because Future is already completed
 	}
 
 	/**
-	 * Built-in thread pool
+	 * Built-in thread pool, this doesn't use the Executor service, but uses ForkJoinPool
 	 */
 	@Test
 	public void supplyAsync() throws Exception {

@@ -45,6 +45,12 @@ public class AbstractFuturesTest {
 		executorService.awaitTermination(10, TimeUnit.SECONDS);
 	}
 
+	/**
+	 * The executorService provides a Thread from a FixedThreadPool to go and execute
+	 * the task in a separate thread from the parent one.
+	 * @param tag
+	 * @return
+	 */
 	protected CompletableFuture<String> questions(String tag) {
 		return CompletableFuture.supplyAsync(() ->
 				client.mostRecentQuestionAbout(tag),

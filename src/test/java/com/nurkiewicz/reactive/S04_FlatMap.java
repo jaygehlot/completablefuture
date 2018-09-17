@@ -39,6 +39,15 @@ public class S04_FlatMap extends AbstractFuturesTest {
 		});
 	}
 
+	/**
+	 * Difference between .thenApply() and .thenCompose()
+	 * is that Futures do not next within each other.
+	 *
+	 * Using .thenApply() we could return a CompletableFuture<CompletableFuture<Question>>>
+	 * Using .thenCompose() we return a CompletableFuture<Question>
+	 *
+	 * @throws Exception
+	 */
 	@Test
 	public void thenCompose() throws Exception {
 		final CompletableFuture<Document> java = javaQuestions();
@@ -61,6 +70,10 @@ public class S04_FlatMap extends AbstractFuturesTest {
 		});
 	}
 
+	/**
+	 * Chained up from above example
+	 * @throws Exception
+	 */
 	@Test
 	public void chained() throws Exception {
 		javaQuestions().

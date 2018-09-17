@@ -25,8 +25,14 @@ public class S01_Introduction extends AbstractFuturesTest {
 	@Test
 	public void executorService() throws Exception {
 		final Callable<String> task = () -> client.mostRecentQuestionAbout("java");
+
+		//this code is non-blocking and will provide a handle on something that will be returned in the
+		//future, either immediately, in a few seconds, minutes or days
+		//promising the user that they will get a string in the future
 		final Future<String> javaQuestionFuture = executorService.submit(task);
 		//...
+
+		//can only interact with a Future using a get()
 		final String javaQuestion = javaQuestionFuture.get();
 		log.debug("Found: '{}'", javaQuestion);
 	}
@@ -36,10 +42,16 @@ public class S01_Introduction extends AbstractFuturesTest {
 	 */
 	@Test
 	public void waitForFirstOrAll() throws Exception {
+
+		//these two lines are non-blocking, it doesn't block the main thread
 		final Future<String> java = findQuestionsAbout("java");
 		final Future<String> scala = findQuestionsAbout("scala");
 
+
 		//???
+
+		final String s = java.get();
+		final String s1 = scala.get();
 	}
 
 	private Future<String> findQuestionsAbout(String tag) {
